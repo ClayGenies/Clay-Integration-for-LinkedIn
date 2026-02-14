@@ -1,4 +1,4 @@
-# Revlogic Clay Webhook Sender
+# Clay Genies | Clay Webhook Sender
 
 > Send LinkedIn Sales Navigator profiles directly to Clay via webhooks. One click. Zero copy-paste.
 
@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-Chrome-yellow.svg)
 
-Built by [Revlogic.co](https://revlogic.co) — Revenue automation experts specializing in Clay and AI-powered workflows.
+Built by [claygenies.co](https://claygenies.co) — Revenue automation experts specializing in Clay and AI-powered workflows.
 
 ---
 
@@ -41,7 +41,7 @@ Select profiles in Sales Navigator → Click Send → Done. Your Clay table fill
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Clay account with webhook-enabled table — Need a template to get started? Head over to Revlogic.co and talk to our team! We'll also get you hooked up with some additional free Clay credits if you're a new user. 🚀
+- Clay account with webhook-enabled table — Need a template to get started? Head over to claygenies.com and talk to our team! We'll also get you hooked up with some additional free Clay credits if you're a new user. 🚀
 - LinkedIn Sales Navigator account
 - Chrome browser
 - 5 minutes
@@ -91,7 +91,7 @@ Select profiles in Sales Navigator → Click Send → Done. Your Clay table fill
    - Select as many as you need (supports bulk)
 
 3. **Open the extension**
-   - Click the Revlogic extension icon
+   - Click the Clay Genies extension icon
    - You'll see a side panel open
 
 4. **Preview your selection**
@@ -312,7 +312,7 @@ See [LICENSE](LICENSE) for full details.
 
 ---
 
-## 👨‍💻 About Revlogic
+## 👨‍💻 About Clay Genies
 
 We build revenue machines with Clay and AI.
 
@@ -323,9 +323,9 @@ We build revenue machines with Clay and AI.
 - Revenue operations consulting
 
 **Our work:**
-- [Clay Templates Library](https://revlogic.co/templates) *(coming soon)*
-- [YouTube Tutorials](https://youtube.com/@revlogic) *(coming soon)*
-- [LinkedIn](https://linkedin.com/company/revlogic)
+- [Clay Templates Library](https://claygenies.com/templates) *(coming soon)*
+- [YouTube Tutorials](https://youtube.com/@claygenies) *(coming soon)*
+- [LinkedIn](https://linkedin.com/company/claygenies)
 
 ---
 
@@ -340,9 +340,9 @@ We build custom Clay automations, Chrome Extensions, and AI workflows for sales 
 - **Monthly Retainer** - $3K-5K (Ongoing optimization)
 
 **Let's talk:**
-- 📧 Email: hello@revlogic.co
-- 💼 Website: [revlogic.co](https://revlogic.co)
-- 📅 Book a call: [calendly.com/revlogic](https://calendly.com/revlogic) *(placeholder)*
+- 📧 Email: hello@claygenies.com
+- 💼 Website: [claygenies.com](https://claygenies.com)
+- 📅 Book a call: [calendly.com/claygenies/craig-maxwell](https://calendly.com/claygenies)
 
 ---
 
@@ -360,7 +360,7 @@ Contributions welcome! Please:
 
 ## 🐛 Bug Reports
 
-Found a bug? [Open an issue](https://github.com/yourusername/revlogic-clay-sender/issues)
+Found a bug? [Open an issue](https://github.com/yourusername/claygenies-Clay-Integration-for-LinkedIn/issues)
 
 Include:
 - Chrome version
@@ -392,5 +392,5 @@ If this saved you time:
 
 ---
 
-**Built with ❤️ by [Revlogic.co](https://revlogic.co) | Last updated: February 2026**
+**Built with ❤️ by [Clay Genies](https://claygenies.com) | Last updated: February 14th 2026**
 
