@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<!--
+  Revlogic Clay Webhook Sender
+  Open Source Chrome Extension
+  Copyright (c) 2026 Revlogic.co
+  Licensed under MIT License
+  GitHub: https://github.com/revlogic/clay-webhook-sender
+-->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revlogic Settings</title>
+  <style>
+    :root {
+      --bg: #070A12;
+      --panel: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --focus: rgba(99, 102, 241, 0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.45);
+      --radius: 14px;
+      --mono: ui-monospace, Menlo, Monaco, Consolas, monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: var(--sans);
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 20% -10%, rgba(99, 102, 241, 0.30), transparent 55%),
+        radial-gradient(700px 520px at 85% 10%, rgba(139, 92, 246, 0.25), transparent 55%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    .wrap { max-width: 820px; padding: 22px 18px 40px; margin: 0 auto; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 12px;
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.9), rgba(139,92,246,0.9));
+      display: grid; place-items: center;
+      box-shadow: 0 8px 20px rgba(99,102,241,0.25);
+    }
+
+    .title h1 { font-size: 15px; margin: 0; letter-spacing: 0.3px; font-weight: 700; }
+    .title p { margin: 3px 0 0; font-size: 12px; color: var(--muted); }
+    
+    .opensource-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: #10b981;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .opensource-badge:hover {
+      background: rgba(16,185,129,0.18);
+    }
+
+    .grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 16px; }
+
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .card h2 {
+      font-size: 14px;
+      margin: 0 0 12px;
+      letter-spacing: 0.2px;
+      font-weight: 600;
+    }
+
+    .sub {
+      margin: -6px 0 14px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .field { margin-top: 14px; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 11px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      outline: none;
+      transition: box-shadow .15s ease, border-color .15s ease;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.35); }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 3px var(--focus);
+    }
+
+    .help {
+      margin-top: 6px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.35;
+    }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .btnbar { display: flex; gap: 10px; margin-top: 18px; }
+
+    button {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      font-size: 13px;
+      transition: all 0.15s;
+    }
+
+    button.primary {
+      border: none;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.95), rgba(139, 92, 246, 0.92));
+      box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+    }
+
+    button:hover { opacity: 0.9; }
+    button:active { transform: translateY(1px); }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(10, 14, 26, 0.92);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .18s ease, transform .18s ease;
+      pointer-events: none;
+      backdrop-filter: blur(8px);
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    
+    .footer {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .footer a {
+      color: rgba(99,102,241,0.9);
+      text-decoration: none;
+    }
+    
+    .footer a:hover {
+      color: rgba(99,102,241,1);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="title">
+          <h1>Revlogic Clay Sender</h1>
+          <p>Send profiles to Clay via webhooks</p>
+        </div>
+      </div>
+      <a href="https://github.com/revlogic/clay-webhook-sender" target="_blank" class="opensource-badge">
+        ⭐ Star on GitHub
+      </a>
+    </div>
+
+    <div class="grid">
+      
+      <div class="card" style="background: rgba(255,193,7,0.08); border-color: rgba(255,193,7,0.2);">
+        <h2 style="color: rgba(255,193,7,0.95);">⚠️ Important Legal Information</h2>
+        <p style="font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.8); margin: 0;">
+          <strong>This is an independent, open source tool created by Revlogic.co.</strong><br><br>
+          
+          We are <strong>NOT</strong> affiliated with, endorsed by, or sponsored by:<br>
+          • <strong>Clay™</strong> (trademark of Clay.com)<br>
+          • <strong>LinkedIn®</strong> (registered trademark of Microsoft Corporation)<br>
+          • <strong>Microsoft®</strong><br><br>
+          
+          This software is provided "as is" under the <strong>MIT License</strong>. It is <strong>free and open source</strong> — you may use, modify, and distribute it freely.<br><br>
+          
+          <strong>You are responsible for:</strong><br>
+          • Complying with LinkedIn's Terms of Service<br>
+          • Complying with Clay's Terms of Service<br>
+          • Using this tool ethically and legally<br>
+          • Any consequences of your use of this tool<br><br>
+          
+          <strong>Use at your own risk.</strong> See <a href="https://github.com/revlogic/clay-webhook-sender/blob/main/LICENSE" target="_blank" style="color: rgba(99,102,241,0.95); text-decoration: none;">LICENSE</a> for full terms.
+        </p>
+      </div>
+      
+      <div class="card">
+        <h2>📖 How to Use</h2>
+        <p style="font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0;">
+          <strong>1. In Sales Navigator search results:</strong><br>
+          → <strong>Scroll to the bottom</strong> of the page to load all results<br>
+          → Tick checkboxes next to profiles you want<br>
+          → Open extension sidebar → Click "Refresh" to preview<br>
+          → Click "Send" to send to Clay<br><br>
+          
+          <strong>2. On single profile pages:</strong><br>
+          → Navigate to any LinkedIn profile, Sales Nav lead, or Recruiter profile<br>
+          → Open extension sidebar → Click "Send"<br>
+          → Profile is sent immediately<br><br>
+          
+          <strong>Note:</strong> The extension auto-refreshes when you change pages to prevent sending stale data.
+        </p>
+      </div>
+    
+      <div class="card">
+        <h2>🔗 Connection</h2>
+        <p class="sub">Set your Clay webhook URL and send mode.</p>
+
+        <div class="field">
+          <label for="clayWebhookUrl">Clay Webhook URL</label>
+          <input id="clayWebhookUrl" placeholder="https://..." autocomplete="off" />
+          <div class="help">Get this from your Clay table webhook settings</div>
+        </div>
+
+        <div class="field">
+          <label for="sendMode">Send mode</label>
+          <select id="sendMode">
+            <option value="single">Single (recommended)</option>
+            <option value="batch">Batch (array payload)</option>
+          </select>
+          <div class="help">Single sends one webhook per profile. Batch sends all at once.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>👤 Optional Metadata</h2>
+        <p class="sub">These fields are added to every webhook payload.</p>
+
+        <div class="row">
+          <div class="field">
+            <label for="addedBy">Added By (email)</label>
+            <input id="addedBy" placeholder="your.email@company.com" autocomplete="off" />
+          </div>
+
+          <div class="field">
+            <label for="hsUserId">HubSpot User ID</label>
+            <input id="hsUserId" placeholder="e.g. 31712004" autocomplete="off" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧹 Field Trimming (Advanced)</h2>
+        <p class="sub">Use regex to clean unwanted text from fields.</p>
+
+        <div class="field">
+          <label for="trimFullName">Full Name Pattern</label>
+          <input id="trimFullName" placeholder='e.g. \s+is reachable.*$' />
+          <div class="help">Removes "is reachable" and similar suffixes</div>
+        </div>
+
+        <div class="btnbar">
+          <button id="save" class="primary">💾 Save Settings</button>
+          <button id="test">Test Extraction</button>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p><strong>Open Source Project</strong> • MIT License • Free Forever</p>
+        <p style="margin-top: 4px; font-size: 11px;">
+          Copyright © 2026 Revlogic.co • All trademarks are property of their respective owners
+        </p>
+        <p style="margin-top: 8px;">
+          <a href="https://github.com/revlogic/clay-webhook-sender" target="_blank">GitHub</a> • 
+          <a href="https://github.com/revlogic/clay-webhook-sender/blob/main/LICENSE" target="_blank">License</a> • 
+          <a href="https://revlogic.co" target="_blank">Built by Revlogic.co</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>

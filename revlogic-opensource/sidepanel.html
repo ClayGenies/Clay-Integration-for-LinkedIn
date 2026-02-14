@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revlogic Clay Sender</title>
+  <style>
+    :root{
+      --bg:#0a0e1a; --panel:rgba(255,255,255,0.06); --panel2:rgba(255,255,255,0.08);
+      --text:rgba(255,255,255,0.92); --muted:rgba(255,255,255,0.72); --border:rgba(255,255,255,0.12);
+      --accent:#6366f1; --accent2:#8b5cf6; --good:#10b981; --bad:#ef4444;
+      --shadow:0 10px 30px rgba(0,0,0,0.35); --r:14px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:var(--sans); color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(99,102,241,0.25), transparent 60%),
+        radial-gradient(800px 500px at 110% 10%, rgba(139,92,246,0.20), transparent 55%),
+        radial-gradient(900px 600px at 50% 120%, rgba(16,185,129,0.12), transparent 55%),
+        var(--bg);
+      padding:14px; box-sizing:border-box;
+    }
+    .wrap{display:flex; flex-direction:column; gap:12px; height:calc(100vh - 28px);}
+    .card{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(10px);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+    .header{display:flex; align-items:center; gap:10px; padding:12px 12px 10px; flex-shrink:0;}
+    .logo{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(135deg, rgba(99,102,241,1), rgba(139,92,246,1));
+      display:grid;place-items:center;
+      box-shadow:0 8px 20px rgba(99,102,241,0.3);
+      flex:0 0 auto;
+    }
+    .brand{display:flex;flex-direction:column;line-height:1.1;}
+    .brand .t{font-weight:700;letter-spacing:0.3px;font-size:14px;}
+    .brand .s{font-size:11px;color:var(--muted);margin-top:2px;}
+    .pill{
+      margin-left:auto; font-size:11px; padding:6px 10px; border:1px solid var(--border);
+      border-radius:999px; color:var(--muted); max-width:180px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+      background:rgba(0,0,0,0.12);
+    }
+    
+    .opensource-banner {
+      padding: 8px 12px;
+      background: rgba(16,185,129,0.08);
+      border-bottom: 1px solid rgba(16,185,129,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    .opensource-banner a {
+      color: rgba(99,102,241,0.95);
+      text-decoration: none;
+      margin-left: auto;
+      font-weight: 600;
+    }
+    .opensource-banner a:hover {
+      color: rgba(99,102,241,1);
+    }
+    
+    .section{padding:12px; flex-shrink:0;}
+    .row{display:flex; gap:10px; align-items:center;}
+    .row>*{flex:1;}
+    label{display:block; font-size:12px; color:var(--muted); margin-bottom:6px;}
+    select,button{
+      width:100%; box-sizing:border-box; border-radius:12px; border:1px solid var(--border);
+      background:rgba(0,0,0,0.18); color:var(--text); padding:10px 12px; outline:none;
+      transition:transform .05s ease, border-color .15s ease, background .15s ease;
+      font-size:13px;
+    }
+    select{cursor:pointer;}
+    select:focus{border-color:rgba(99,102,241,0.85); background:rgba(0,0,0,0.22);}
+    button{
+      cursor:pointer; border:0; font-weight:650; letter-spacing:0.2px;
+      background:linear-gradient(135deg, rgba(99,102,241,0.95), rgba(139,92,246,0.90));
+      box-shadow:0 10px 25px rgba(99,102,241,0.15);
+    }
+    button:hover{filter:brightness(1.05);}
+    button:active{transform:translateY(1px);}
+    .btn2{background:rgba(255,255,255,0.08); border:1px solid var(--border); box-shadow:none; font-weight:600;}
+    .hint{font-size:12px; color:var(--muted); margin-top:10px; line-height:1.35;}
+    .tableWrap{
+      padding:0 12px 12px; 
+      overflow-y:auto; 
+      overflow-x:hidden;
+      flex:1 1 0; 
+      min-height:0;
+      max-height:100%;
+    }
+    table{
+      width:100%; border-collapse:separate; border-spacing:0;
+      font-size:12px; border-radius:14px; border:1px solid var(--border);
+      background:rgba(0,0,0,0.18); overflow:hidden;
+    }
+    thead th{
+      text-align:left; padding:10px 10px; color:rgba(255,255,255,0.78); font-weight:650;
+      border-bottom:1px solid var(--border); background:rgba(255,255,255,0.04);
+      position:sticky; top:0; backdrop-filter:blur(8px);
+    }
+    tbody td{padding:9px 10px; border-bottom:1px solid rgba(255,255,255,0.06); color:rgba(255,255,255,0.88); vertical-align:top; word-break:break-all;}
+    tbody tr:hover td{background:rgba(255,255,255,0.04);}
+    .small{font-size:12px; color:var(--muted);}
+    .status{
+      padding:10px 12px 12px; border-top:1px solid rgba(255,255,255,0.08);
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      flex-shrink:0;
+    }
+    .status .left{display:flex; gap:10px; align-items:center;}
+    .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.35);box-shadow:0 0 0 4px rgba(255,255,255,0.06);}
+    .dot.good{background:var(--good);box-shadow:0 0 0 4px rgba(16,185,129,0.12);}
+    .dot.bad{background:var(--bad);box-shadow:0 0 0 4px rgba(239,68,68,0.12);}
+    .mono{font-family:var(--mono); font-size:11px; color:rgba(255,255,255,0.76);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <div class="logo" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="brand">
+          <div class="t">Revlogic</div>
+          <div class="s">Open Source • MIT License</div>
+        </div>
+        <div class="pill" id="site">site</div>
+      </div>
+      
+      <div class="opensource-banner">
+        <span style="color: rgba(16,185,129,0.9);">⭐</span>
+        <span style="color: rgba(255,255,255,0.8);">Free & Open Source</span>
+        <a href="https://github.com/revlogic/clay-webhook-sender" target="_blank">Star on GitHub →</a>
+      </div>
+      
+      <div style="padding: 10px 12px; background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 10px; color: rgba(255,255,255,0.6); line-height: 1.4;">
+        <strong style="color: rgba(255,255,255,0.75);">Disclaimer:</strong> This is an independent open source tool. Not affiliated with Clay™, LinkedIn®, or Microsoft®. Clay™ is a trademark of Clay.com. LinkedIn® is a registered trademark of Microsoft Corporation. Use responsibly and in compliance with all applicable terms of service.
+      </div>
+
+      <div class="section">
+        <div class="row" style="margin-top:0;">
+          <button class="btn2" id="openSettings">Settings</button>
+          <button class="btn2" id="refresh">Refresh</button>
+          <button id="sendSelected">Send</button>
+        </div>
+
+        <div class="hint" id="hintText">
+          On Sales Navigator: Scroll to the bottom to load all results, tick profiles, then click Refresh and Send.
+        </div>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:50%;">Full name</th>
+              <th style="width:40%;">Company</th>
+              <th style="width:10%;">LinkedIn</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="3" class="small">No preview yet. Click Refresh.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="status">
+        <div class="left">
+          <span class="dot" id="dot"></span>
+          <span class="small" id="statusText">Idle</span>
+        </div>
+        <span class="mono" id="meta"></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
