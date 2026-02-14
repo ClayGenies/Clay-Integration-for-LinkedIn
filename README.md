@@ -31,18 +31,17 @@ Select profiles in Sales Navigator → Click Send → Done. Your Clay table fill
 
 - ✅ **Bulk export** - Send hundreds of Sales Navigator profiles at once
 - ✅ **Smart extraction** - Automatically captures name, company, LinkedIn URL
-- ✅ **Domain mapping** - Assign company domains for enrichment
-- ✅ **Custom fields** - Add your email, HubSpot ID, or any metadata
-- ✅ **Regex cleaning** - Remove "is reachable" and other junk from names
+- ✅ **Custom fields** - Add your email, HubSpot, Salesforce or Bullhorn User ID, or any metadata
+- ✅ **Regex cleaning** - Removes "is reachable" and other junk from names
 - ✅ **Single or batch mode** - Control how webhooks fire
-- ✅ **Privacy-first** - All data goes directly to YOUR Clay webhook (we never see it)
+- ✅ **Privacy-first** - All data goes directly to YOUR Clay webhook (nobody else ever sees it)
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Clay account with webhook-enabled table
+- Clay account with webhook-enabled table — Need a template to get started? Head over to Revlogic.co and talk to our team! We'll also get you hooked up with some additional free Clay credits if you're a new user. 🚀
 - LinkedIn Sales Navigator account
 - Chrome browser
 - 5 minutes
