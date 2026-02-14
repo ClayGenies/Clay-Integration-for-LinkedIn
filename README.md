@@ -342,7 +342,7 @@ We build custom Clay automations, Chrome Extensions, and AI workflows for sales 
 **Let's talk:**
 - 📧 Email: hello@claygenies.com
 - 💼 Website: [claygenies.com](https://claygenies.com)
-- 📅 Book a call: [calendly.com/claygenies/craig-maxwell](https://calendly.com/claygenies)
+- 📅 Book a call: [calendly.com/claygenies/](https://calendly.com/claygenies/intro)
 
 ---
 
