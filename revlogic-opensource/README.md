@@ -1,4 +1,4 @@
-# Revlogic Clay Webhook Sender
+# Clay Genies | Clay Webhook Sender
 
 > **Open Source Chrome Extension** to send LinkedIn profiles to Clay via webhooks
 
@@ -6,13 +6,13 @@
 ![Version](https://img.shields.io/badge/version-3.0-blue.svg)
 ![Open Source](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-red.svg)
 
-**Free & Open Source Forever** | [⭐ Star on GitHub](https://github.com/revlogic/clay-webhook-sender)
+**Free & Open Source Forever** | [⭐ Star on GitHub](https://github.com/ClayGenies/Clay-Integration-for-LinkedIn/)
 
 ---
 
 ## ⚠️ Important Legal Disclaimer
 
-**This is an independent, open source tool created by Revlogic.co.**
+**This is an independent, open source tool created by ClayGenies.com.**
 
 ### We are NOT affiliated with:
 - **Clay™** (trademark of Clay.com)
@@ -167,7 +167,7 @@ Go to Settings → Field Trimming to configure.
 We welcome contributions!
 
 **Ways to contribute:**
-- 🐛 Report bugs via [Issues](https://github.com/revlogic/clay-webhook-sender/issues)
+- 🐛 Report bugs via [Issues](https://github.com/ClayGenies/Clay-Integration-for-LinkedIn/issues)
 - 💡 Suggest features
 - 🔧 Submit Pull Requests
 - ⭐ Star the repo!
@@ -185,7 +185,7 @@ We welcome contributions!
 
 **MIT License**
 
-Copyright (c) 2026 Revlogic.co
+Copyright (c) 2026 ClayGenies.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -206,21 +206,21 @@ We build revenue automation with Clay and AI.
 - RevOps consulting
 
 **Contact:**
-- 🌐 [revlogic.co](https://revlogic.co)
-- 📧 hello@revlogic.co
+- 🌐 [ClayGenies.com](https://ClayGenies.com)
+- 📧 hello@claygenies.com
 
 ---
 
 ## 📞 Support
 
 **For bugs or feature requests:**
-- Open an [Issue](https://github.com/revlogic/clay-webhook-sender/issues)
+- Open an [Issue](https://github.com/ClayGenies/Clay-Integration-for-LinkedIn/issues)
 
 **For general questions:**
-- Email: hello@revlogic.co
+- Email: hello@claygenies.com
 
 **For consulting/custom work:**
-- Visit [revlogic.co](https://revlogic.co)
+- Visit [ClayGenies.com](https://claygenies.com)
 
 ---
 
@@ -240,4 +240,4 @@ This tool is an independent project and is not endorsed by or affiliated with an
 
 **Made with ❤️ by the open source community**
 
-[⭐ Star on GitHub](https://github.com/revlogic/clay-webhook-sender) | [📄 License](LICENSE) | [🏢 Revlogic.co](https://revlogic.co)
+[⭐ Star on GitHub](https://github.com/ClayGenies/Clay-Integration-for-LinkedIn) | [📄 License](LICENSE) | [🏢 ClayGenies.com](https://rclaygenies.com)
