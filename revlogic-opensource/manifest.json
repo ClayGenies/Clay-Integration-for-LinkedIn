@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Revlogic — Clay Webhook Sender",
+  "name": "Clay Genies — Clay Webhook Sender",
   "version": "3.0",
   "description": "Open source tool to send LinkedIn profiles to Clay via webhooks. Free & MIT licensed.",
-  "author": "Revlogic.co",
-  "homepage_url": "https://github.com/revlogic/clay-webhook-sender",
+  "author": "ClayGenies.com",
+  "homepage_url": "https://github.com/ClayGenies/Clay-Integration-for-LinkedIn/",
   "permissions": [
     "activeTab",
     "scripting",
@@ -33,7 +33,7 @@
     }
   ],
   "action": {
-    "default_title": "Revlogic — Clay Webhook Sender (Open Source)",
+    "default_title": "Clay Genies — Clay Webhook Sender (Open Source)",
     "default_icon": {
       "16": "assets/icon16.png",
       "32": "assets/icon32.png",
